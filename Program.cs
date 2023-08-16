@@ -24,12 +24,12 @@ namespace Aula03Colecoes
             Console.WriteLine("Digite a data de admissao:");
             f.DataAdmissao = DateTime.Parse(Console.ReadLine());
 
-            if(string.IsNullOrEmpty(f.Nome))
+            if (string.IsNullOrEmpty(f.Nome))
             {
                 Console.WriteLine("O nome deve ser preenchido.");
                 return;
             }
-            else if(f.Salario == 0)
+            else if (f.Salario == 0)
             {
                 Console.WriteLine("O valor do salário nao pode ser 0.");
                 return;
@@ -41,39 +41,65 @@ namespace Aula03Colecoes
             }
         }
         public static void ExemplosListasColecoes()
-{
-Console.WriteLine("==================================================");
-Console.WriteLine("****** Exemplos - Aula 03 Listas e Coleções ******");
-Console.WriteLine("==================================================");
-CriarLista();
-int opcaoEscolhida = 0;
-do
-{
-Console.WriteLine("==================================================");
-Console.WriteLine("---Digite o número referente a opção desejada: ---");
-Console.WriteLine("1 - Obter Por Id");
-Console.WriteLine("==================================================");
-Console.WriteLine("-----Ou tecle qualquer outro número para sair-----");
-Console.WriteLine("==================================================");
-opcaoEscolhida = int.Parse(Console.ReadLine());
-string mensagem = string.Empty;
-switch (opcaoEscolhida)
-{
-case 1:
-ObterPorId();
-break;
-default:
-Console.WriteLine("Saindo do sistema....");
-break;
-}
-} while (opcaoEscolhida >= 1 && opcaoEscolhida <= 10);
-Console.WriteLine("==================================================");
-Console.WriteLine("* Obrigado por utilizar o sistema e volte sempre *");
-Console.WriteLine("==================================================");
-}
+        {
+            Console.WriteLine("==================================================");
+            Console.WriteLine("****** Exemplos - Aula 03 Listas e Coleções ******");
+            Console.WriteLine("==================================================");
+            CriarLista();
+            int opcaoEscolhida = 0;
+            do
+            {
+                Console.WriteLine("==================================================");
+                Console.WriteLine("---Digite o número referente a opção desejada: ---");
+                Console.WriteLine("1 - Obter Por Id");
+                Console.WriteLine("2 - Adicionar Funcionário");
+                Console.WriteLine("3 - Obter por id digitado");
+                Console.WriteLine("4 - Obter por salario digitado");
+                Console.WriteLine("==================================================");
+                Console.WriteLine("-----Ou tecle qualquer outro número para sair-----");
+                Console.WriteLine("==================================================");
+                opcaoEscolhida = int.Parse(Console.ReadLine());
+                string mensagem = string.Empty;
+                switch (opcaoEscolhida)
+                {
+                    case 1:
+                        ObterPorId();
+                        break;
+                    case 2:
+                        AdicionarFuncionario();
+                        break;
+                    case 3:
+                        Console.WriteLine("Digite o Id do funcionario que voce deseja buscar:");
+                        int Id = int.Parse(Console.ReadLine());
+                        ObterPorId(Id);
+                        break;
+                    case 4:
+                        Console.WriteLine("Digite o Salario que voce deseja buscar:");
+                        decimal Salario = decimal.Parse(Console.ReadLine());
+                        ObterPorSalario(Salario);
+                        break;
+                    default:
+                        Console.WriteLine("Saindo do sistema....");
+                        break;
+                }
+            } while (opcaoEscolhida >= 1 && opcaoEscolhida <= 10);
+            Console.WriteLine("==================================================");
+            Console.WriteLine("* Obrigado por utilizar o sistema e volte sempre *");
+            Console.WriteLine("==================================================");
+        }
+        public static void ObterPorId(int id)
+        {
+            Funcionario fBusca = lista.Find(x => x.Id == id);
+            Console.WriteLine($"Personagem encontrado: {fBusca.Nome}");
+        }
         public static void ObterPorId()
         {
             lista = lista.FindAll(x => x.Id == 1);
+            ExibirLista();
+        }
+        public static void ObterPorSalario(decimal valor)
+        {
+            lista = lista.FindAll(x => x.Salario >= valor);
             ExibirLista();
         }
         public static void ExibirLista()
