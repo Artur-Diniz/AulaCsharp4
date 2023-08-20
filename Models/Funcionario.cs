@@ -13,7 +13,7 @@ namespace Aula03Colecoes.Models
        public int Id { get; set; }
        public string Nome { get; set; }
        public string Cpf { get; set; }
-       public DateTime DataAdmissao { get; set; }
+       public DateTime DataAdmissao { get; set; }   
        public decimal Salario { get; set; }
 
        public TipoFuncionarioEnum TipoFuncionario { get; set; }
@@ -22,6 +22,7 @@ namespace Aula03Colecoes.Models
        {
             Salario = Salario + (Salario * 10 / 100);
        }
+    
 
        public decimal CalcularDescontoVT(decimal percentual)
        {
